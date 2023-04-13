@@ -1,0 +1,16 @@
+name: Test and Lint
+
+on:
+  - push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: My step
+
+      - run: make lint
+      - run: make test

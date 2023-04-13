@@ -12,11 +12,11 @@ const genDiff = (filepath1, filepath2) => {
       acc[`  ${key}`] = dataParsed1[key];
       return acc;
     }
-    if (dataParsed1.hasOwnProperty(key) && !dataParsed2.hasOwnProperty(key)) {
+    if (Object.hasOwn(dataParsed1, key) && !Object.hasOwn(dataParsed2, key)) {
       acc[`- ${key}`] = dataParsed1[key];
       return acc;
     }
-    if (dataParsed2.hasOwnProperty(key) && !dataParsed1.hasOwnProperty(key)) {
+    if (Object.hasOwn(dataParsed2, key) && !Object.hasOwn(dataParsed1, key)) {
       acc[`+ ${key}`] = dataParsed2[key];
       return acc;
     }
