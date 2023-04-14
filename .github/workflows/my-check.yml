@@ -4,12 +4,14 @@ name: Node CI
 # Trigger the workflow on push or pull request
 on:
   - push
+  - pull_request
 
 env:
   CI: true
 
 jobs:
   build:
+
     # The type of machine to run the job on
     runs-on: ubuntu-latest
 
@@ -19,8 +21,8 @@ jobs:
         node-version: [18.x]
 
     steps:
-      # Check-out repository under GitHub workspace
-      # https://github.com/actions/checkout
+        # Check-out repository under GitHub workspace
+        # https://github.com/actions/checkout
       - uses: actions/checkout@v3
         # Step's name
       - name: Use Node.js ${{ matrix.node-version }}
@@ -30,7 +32,7 @@ jobs:
         # The Node.js version to configure
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          cache: 'npm'
       - run: make install
       - run: make lint
       - run: make test

@@ -1,11 +1,17 @@
 install:
 	npm ci
-	
-lint:
-	npx eslint .
 
-test: 
+run:
+	bin/gendiff.js
+
+test:
 	npm test
 
 test-coverage:
 	npm test -- --coverage --coverageProvider=v8
+
+lint:
+	npx eslint .
+
+
+.PHONY: test
