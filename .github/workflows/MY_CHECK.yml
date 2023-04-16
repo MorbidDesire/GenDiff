@@ -5,15 +5,15 @@ name: Project test & build
 # в данном случае это push и pull_request, в ветку master
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 # выполняемые действия
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     # запускаются по шагам
     # name - название шага
     # в github actions будет выводиться название шага, и процессы
@@ -38,6 +38,6 @@ jobs:
           # в значение GITHUB_TOKEN помещается ссылка на ваш секрет в репозитории
           # в данном случае его название KEY
           GITHUB_TOKEN: ${{ secrets.MY_CHECK }}
-          BRANCH: gh-pages
+          BRANCH: main
           FOLDER: public
           CLEAN: true
