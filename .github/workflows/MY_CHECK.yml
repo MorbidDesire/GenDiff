@@ -24,13 +24,13 @@ jobs:
           persist-credentials: false
 
       - name: Install 🔧
-        run: npm install
+        run: make install
 
       - name: Run Test 🔨
-        run: npm test
+        run: make test
 
       - name: Run Lint 👷
-        run: npm lint
+        run: make lint
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
