@@ -1,10 +1,19 @@
 import { readFileSync } from 'fs';
+import path from 'path';
+import parser from './parsers.js';
 
 const genDiff = (filepath1, filepath2) => {
+  const extname1 = path.extname(filepath1);
+  const extname2 = path.extname(filepath2);
+  if (extname1 !== extname2) {
+    return undefined;
+  }
   const data1 = readFileSync(filepath1, 'utf-8');
   const data2 = readFileSync(filepath2, 'utf-8');
-  const dataParsed1 = JSON.parse(data1);
-  const dataParsed2 = JSON.parse(data2);
+
+  const dataParsed1 = parser(data1, extname1);
+  const dataParsed2 = parser(data2, extname2);
+
   const sortedKeys = Object.keys({ ...dataParsed1, ...dataParsed2 }).sort();
 
   const filteredData = sortedKeys.reduce((acc, key) => {

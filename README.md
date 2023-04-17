@@ -15,4 +15,10 @@ npm link
 gendiff <filepath> <filepath>
 ```
 
-[![gendiff](https://asciinema.org/a/VlgKVSRDhfe2VhivcoXifVBEx.svg)](https://asciinema.org/a/VlgKVSRDhfe2VhivcoXifVBEx)
+## gendiff two .json
+
+[![gendiff json](https://asciinema.org/a/VlgKVSRDhfe2VhivcoXifVBEx.svg)](https://asciinema.org/a/VlgKVSRDhfe2VhivcoXifVBEx)
+
+## gendiff two .yml
+
+[![gendiff yml](https://asciinema.org/a/8GqUjKbpT0P98AEE461XvTzNb.svg)](https://asciinema.org/a/8GqUjKbpT0P98AEE461XvTzNb)
