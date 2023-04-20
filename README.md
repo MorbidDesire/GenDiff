@@ -22,3 +22,7 @@ gendiff <filepath> <filepath>
 ## gendiff two .yml
 
 [![gendiff yml](https://asciinema.org/a/8GqUjKbpT0P98AEE461XvTzNb.svg)](https://asciinema.org/a/8GqUjKbpT0P98AEE461XvTzNb)
+
+## gendiff two complex .json and .yml
+
+[![gendiff complex](https://asciinema.org/a/OAvJN5iJLLjILdLjo3CY9fajy.svg)](https://asciinema.org/a/OAvJN5iJLLjILdLjo3CY9fajy)

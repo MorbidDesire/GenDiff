@@ -3,15 +3,46 @@ import { fileURLToPath } from 'node:url';
 import path from 'path';
 import genDiff from '../src/index.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+let __filename;
+let __dirname;
+let getFixturePath;
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+beforeAll(() => {
+  __filename = fileURLToPath(import.meta.url);
+  __dirname = path.dirname(__filename);
+  getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
+});
 
-test('gendiff', () => {
-  expect(genDiff(getFixturePath('file1.json'), getFixturePath('file2.json'))).toEqual('{"- follow":false,"  host":"hexlet.io","- proxy":"123.234.53.22","- timeout":50,"+ timeout":20,"+ verbose":true}');
+test('JSON files', () => {
+  expect(genDiff('stylish', getFixturePath('testfile1.json'), getFixturePath('testfile2.json'))).toMatch(`{
+    key1: value1
+  - key2: true
+  + key2: false
+    key3: {
+      + lol: {
+        }
+      - wow: null
+    }
+}`);
+});
 
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.json'))).toEqual(undefined);
+test('YAML files', () => {
+  expect(genDiff('stylish', getFixturePath('testfile1.yml'), getFixturePath('testfile2.yml'))).toMatch(`{
+    fishnews: mac
+  - key2: true
+  + key2: {
+    }
+    where: {
+      + object: test
+        pop: null
+    }
+}`);
+});
 
-  expect(genDiff(getFixturePath('file1.yml'), getFixturePath('file2.yml'))).toEqual('{"- follow":false,"  host":"hexlet.io","- proxy":"123.234.53.22","- timeout":50,"+ timeout":20,"+ verbose":true}');
+test('Empty file', () => {
+  expect(genDiff('stylish', getFixturePath('emptyfile.json'), getFixturePath('testfile2.yml'))).toBeUndefined();
+});
+
+test('Invalid Format', () => {
+  expect(genDiff('stylish', getFixturePath('random.ini'), getFixturePath('testfile2.yml'))).toBeUndefined();
 });
