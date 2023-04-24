@@ -1,11 +1,9 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 import _ from 'lodash';
-import stylish from './stylish.js';
 import parser from './parsers.js';
 
-// eslint-disable-next-line consistent-return
-const genDiff = (formatter, filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2) => {
   const extname1 = path.extname(filepath1);
   const extname2 = path.extname(filepath2);
 
@@ -13,14 +11,14 @@ const genDiff = (formatter, filepath1, filepath2) => {
   const data2 = readFileSync(filepath2, 'utf-8');
 
   if (data1.length === 0 || data2.length === 0) {
-    return console.log('Can not read an empty object');
+    return undefined;
   }
 
   const dataParsed1 = parser(data1, extname1);
   const dataParsed2 = parser(data2, extname2);
 
   if (dataParsed1 === undefined || dataParsed2 === undefined) {
-    return console.log('Invalid format');
+    return undefined;
   }
 
   const iterFunction = (obj1, obj2) => {
@@ -48,9 +46,7 @@ const genDiff = (formatter, filepath1, filepath2) => {
     }, {});
     return filteredData;
   };
-  if (formatter === 'stylish') {
-    return stylish(iterFunction(dataParsed1, dataParsed2));
-  }
+  return iterFunction(dataParsed1, dataParsed2);
 };
 
 export default genDiff;

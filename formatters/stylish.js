@@ -2,7 +2,6 @@ import _ from 'lodash';
 
 const stylish = (value, replacer = ' ', spacesCount = 4) => {
   const iter = (currentValue, depth) => {
-    // альтернативный вариант: (typeof currentValue !== 'object' || currentValue === null)
     if (!_.isObject(currentValue)) {
       return `${currentValue}`;
     }
