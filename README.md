@@ -29,4 +29,8 @@ gendiff <filepath> <filepath>
 
 ## gendiff plain formatter
 
-[![gendiff plain](https://asciinema.org/a/nAhH1vPmZnKJLEzBDrvzIo3tO.svg)](https://asciinema.org/a/nAhH1vPmZnKJLEzBDrvzIo3tO)
+[![gendiff -f plain](https://asciinema.org/a/nAhH1vPmZnKJLEzBDrvzIo3tO.svg)](https://asciinema.org/a/nAhH1vPmZnKJLEzBDrvzIo3tO)
+
+## gendiff json formatter
+
+[![gendiff -f json](https://asciinema.org/a/C6iPOWcXmDcvnAVJQIAfStnyJ.svg)](https://asciinema.org/a/C6iPOWcXmDcvnAVJQIAfStnyJ)
