@@ -47,6 +47,7 @@ const genDiff = (filepath1, filepath2) => {
     }, {});
     return filteredData;
   };
+  console.log(iterFunction(dataParsed1, dataParsed2));
   return iterFunction(dataParsed1, dataParsed2);
 };
 
