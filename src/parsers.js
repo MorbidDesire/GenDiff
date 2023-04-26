@@ -10,11 +10,5 @@ const parser = (data, extname) => {
       return undefined;
   }
 };
-//   if (extname === '.yml' || extname === '.yaml') {
-//     return yaml.load(data);
-//   }
-//   if (extname === '.json') {
-//     return JSON.parse(data);
-//   }
-// };
+
 export default parser;

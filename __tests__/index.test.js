@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { test, expect, describe } from '@jest/globals';
 import { fileURLToPath } from 'node:url';
 import path from 'path';
@@ -69,12 +68,3 @@ test('Empty file', () => {
 test('Invalid Format', () => {
   expect(genDiff('stylish', getFixturePath('random.ini'), getFixturePath('testfile2.yml'))).toEqual('undefined');
 });
-
-// eslint-disable-next-line jest/no-commented-out-tests
-// test('json for json files', () => {
-//   expect(genDiff('json', getFixturePath('testfile1.json'), getFixturePath('testfile2.json'))).toMatch(`[{"key1":{"typeOfValue":"string',"value":"value1","variability":"unchanged"}},
-// {"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},
-// {"key3":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"lol":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},
-// {"wow":{"typeOfValue":"object","value:"null","variability":"removed"}}"}},
-// {"key4":{"typeOfValue":"string","value":"hex","variability":"added"}}]`);
-// });
