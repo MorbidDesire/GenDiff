@@ -33,7 +33,8 @@ Property 'key3.wow' was removed
 Property 'key4' was added with value: 'hex'`);
   });
   test('json for json files', () => {
-    expect(genDiff('json', getFixturePath('testfile1.json'), getFixturePath('testfile2.json'))).toMatch('[{"key1":{"typeOfValue":"string","value":"value1","variability":"unchanged"}},{"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},{"key3":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"lol":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},{"wow":{"typeOfValue":"object","value":"null","variability":"removed"}}"}},{"key4":{"typeOfValue":"string","value":"hex","variability":"added"}}]');
+    // eslint-disable-next-line quotes
+    expect(genDiff('json', getFixturePath('testfile1.json'), getFixturePath('testfile2.json'))).toMatch(`[{"key1":{"typeOfValue":"string","value":"value1","variability":"unchanged"}},{"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},{"key3":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"lol":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},{"wow":{"typeOfValue":"object","value":"null","variability":"removed"}}"}},{"key4":{"typeOfValue":"string","value":"hex","variability":"added"}}]`);
   });
 });
 
@@ -55,7 +56,8 @@ describe('Yaml files', () => {
 Property 'where.object' was added with value: 'test'`);
   });
   test('json for yaml files', () => {
-    expect(genDiff('json', getFixturePath('testfile1.yml'), getFixturePath('testfile2.yml'))).toMatch('[{"fishnews":{"typeOfValue":"string","value":"mac","variability":"unchanged"}},{"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},{"key2":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},{"where":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"object":{"typeOfValue":"string","value":"test","variability":"added"}},{"pop":{"typeOfValue":"object","value":"null","variability":"unchanged"}}"}}]');
+    // eslint-disable-next-line quotes
+    expect(genDiff('json', getFixturePath('testfile1.yml'), getFixturePath('testfile2.yml'))).toMatch(`[{"fishnews":{"typeOfValue":"string","value":"mac","variability":"unchanged"}},{"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},{"key2":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},{"where":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"object":{"typeOfValue":"string","value":"test","variability":"added"}},{"pop":{"typeOfValue":"object","value":"null","variability":"unchanged"}}"}}]`);
   });
 });
 
