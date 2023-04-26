@@ -1,19 +1,14 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'node:url';
 import _ from 'lodash';
 import parser from './parsers.js';
 
 const genDiff = (filepath1, filepath2) => {
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
-  const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename);
-
   const extname1 = path.extname(filepath1);
   const extname2 = path.extname(filepath2);
 
-  const data1 = readFileSync(getFixturePath(filepath1), 'utf-8');
-  const data2 = readFileSync(getFixturePath(filepath2), 'utf-8');
+  const data1 = readFileSync(filepath1, 'utf-8');
+  const data2 = readFileSync(filepath2, 'utf-8');
 
   if (data1.length === 0 || data2.length === 0) {
     return undefined;
