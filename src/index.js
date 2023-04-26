@@ -23,7 +23,6 @@ const genDiff = (filepath1, filepath2) => {
 
   const iterFunction = (obj1, obj2) => {
     const sortedKeys = Object.keys({ ...obj1, ...obj2 }).sort();
-    console.log(sortedKeys);
     const filteredData = sortedKeys.reduce((acc, key) => {
       if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
         acc[`  ${key}`] = iterFunction(obj1[key], obj2[key]);
@@ -47,7 +46,6 @@ const genDiff = (filepath1, filepath2) => {
     }, {});
     return filteredData;
   };
-  console.log(iterFunction(dataParsed1, dataParsed2));
   return iterFunction(dataParsed1, dataParsed2);
 };
 
