@@ -18,10 +18,10 @@ const genDiff = (filepath1, filepath2, formatter) => {
   if (data1.length === 0 || data2.length === 0) {
     return undefined;
   }
-
+  console.log(data1, data2);
   const dataParsed1 = parser(data1, extname1);
   const dataParsed2 = parser(data2, extname2);
-
+  console.log(dataParsed1, dataParsed2);
   if (dataParsed1 === undefined || dataParsed2 === undefined) {
     return undefined;
   }
