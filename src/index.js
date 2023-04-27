@@ -3,12 +3,8 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import parser from './parsers.js';
-import stylish from '../formatters/stylish.js';
-import plain from '../formatters/plain.js';
-import json from '../formatters/json.js';
 
 const genDiff = (filepath1, filepath2, formatter) => {
-  console.log(filepath1, filepath2, formatter);
   const extname1 = path.extname(filepath1);
   const extname2 = path.extname(filepath2);
 
@@ -18,10 +14,9 @@ const genDiff = (filepath1, filepath2, formatter) => {
   if (data1.length === 0 || data2.length === 0) {
     return undefined;
   }
-  console.log(data1, data2);
   const dataParsed1 = parser(data1, extname1);
   const dataParsed2 = parser(data2, extname2);
-  console.log(dataParsed1, dataParsed2);
+
   if (dataParsed1 === undefined || dataParsed2 === undefined) {
     return undefined;
   }
@@ -51,14 +46,7 @@ const genDiff = (filepath1, filepath2, formatter) => {
     }, {});
     return filteredData;
   };
-  switch (formatter) {
-    case 'plain':
-      return plain(iterFunction(dataParsed1, dataParsed2));
-    case 'json':
-      return json(iterFunction(dataParsed1, dataParsed2));
-    default:
-      return stylish(iterFunction(dataParsed1, dataParsed2));
-  }
+  return formatter(iterFunction(dataParsed1, dataParsed2));
 };
 
 export default genDiff;
