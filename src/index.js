@@ -1,9 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { readFileSync } from 'fs';
 import path from 'path';
 import _ from 'lodash';
 import parser from './parsers.js';
+import stylish from '../formatters/stylish.js';
+import plain from '../formatters/plain.js';
+import json from '../formatters/json.js';
 
 const genDiff = (filepath1, filepath2, formatter) => {
+  console.log(filepath1, filepath2, formatter);
   const extname1 = path.extname(filepath1);
   const extname2 = path.extname(filepath2);
 
