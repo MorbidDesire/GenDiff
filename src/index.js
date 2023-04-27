@@ -3,7 +3,7 @@ import path from 'path';
 import _ from 'lodash';
 import parser from './parsers.js';
 
-const genDiff = (filepath1, filepath2) => {
+const genDiff = (filepath1, filepath2, formatter) => {
   const extname1 = path.extname(filepath1);
   const extname2 = path.extname(filepath2);
 
@@ -46,7 +46,7 @@ const genDiff = (filepath1, filepath2) => {
     }, {});
     return filteredData;
   };
-  return iterFunction(dataParsed1, dataParsed2);
+  return formatter(iterFunction(dataParsed1, dataParsed2));
 };
 
 export default genDiff;

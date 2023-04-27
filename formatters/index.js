@@ -6,11 +6,11 @@ import json from './json.js';
 const gendiff = (formatter, filepath1, filepath2) => {
   switch (formatter) {
     case 'plain':
-      return plain(genDiff(filepath1, filepath2));
+      return genDiff(filepath1, filepath2, plain);
     case 'json':
-      return json(genDiff(filepath1, filepath2));
+      return genDiff(filepath1, filepath2, json);
     default:
-      return stylish(genDiff(filepath1, filepath2));
+      return genDiff(filepath1, filepath2, stylish);
   }
 };
 export default gendiff;
