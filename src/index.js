@@ -51,7 +51,14 @@ const genDiff = (filepath1, filepath2, formatter) => {
     }, {});
     return filteredData;
   };
-  return formatter(iterFunction(dataParsed1, dataParsed2));
+  switch (formatter) {
+    case 'plain':
+      return plain(iterFunction(dataParsed1, dataParsed2));
+    case 'json':
+      return json(iterFunction(dataParsed1, dataParsed2));
+    default:
+      return stylish(iterFunction(dataParsed1, dataParsed2));
+  }
 };
 
 export default genDiff;
