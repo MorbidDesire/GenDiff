@@ -3,7 +3,7 @@ import _ from 'lodash';
 const plain = (obj) => {
   const iterFunction = (data, path) => {
     if (!_.isObject(data)) {
-      return `${data}`;
+      return undefined;
     }
     const slicedKeys = Object.keys(data).map((key) => key.slice(2));
     const duplicates = slicedKeys.filter((key, index, newKeys) => newKeys.indexOf(key) !== index);
