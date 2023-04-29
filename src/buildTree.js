@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 const buildTree = (obj1, obj2) => {
-  const sortedKeys = Object.keys({ ...obj1, ...obj2 }).sort();
+  const commonKeys = Object.keys({ ...obj1, ...obj2 });
+  const sortedKeys = _.orderBy(commonKeys, [], ['asc']);
   const filteredData = sortedKeys.reduce((acc, key) => {
     if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
       return { ...acc, [`  ${key}`]: buildTree(obj1[key], obj2[key]) };

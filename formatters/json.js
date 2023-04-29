@@ -26,10 +26,3 @@ const json = (obj) => {
   return JSON.stringify(iterFunction(obj));
 };
 export default json;
-
-// if (_.isObject(value) && key.startsWith(' ')) {
-//   commonScheme.children = iterFunction(value);
-// } else {
-//   commonScheme.value = value;
-// }
-// return commonScheme;
