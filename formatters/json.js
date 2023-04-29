@@ -1,30 +1,36 @@
 import _ from 'lodash';
 
 const json = (obj) => {
-  const iterFunction = (data) => {
-    const result = Object.entries(data)
-      .map(([key, value]) => {
-        let newkey = key;
-        const typeOfValue = typeof value;
-        let variability = 'unchanged';
-        if (key[0] === '+') {
-          newkey = key.slice(2);
-          variability = 'added';
-        }
-        if (key[0] === '-') {
-          newkey = key.slice(2);
-          variability = 'removed';
-        }
-        if (key[0] === ' ') {
-          newkey = key.slice(2);
-        }
-        if (!_.isObject(value)) {
-          return `{"${newkey}":{"typeOfValue":"${typeOfValue}","value":"${value}","variability":"${variability}"}}`;
-        }
-        return `{"${newkey}":{"typeOfValue":"${typeOfValue}","value":"${value}","variability":"${variability}","children":"${iterFunction(value)}"}}`;
-      });
-    return result;
-  };
-  return `[${iterFunction(obj).join(',')}]`;
+  const iterFunction = (data) => Object.entries(data)
+    .map(([key, value]) => {
+      const typeOfValue = typeof value;
+      const commonScheme = {
+        name: key.slice(2),
+        typeOfValue,
+        variability: 'unchanged',
+        children: 'none',
+      };
+      switch (key[0]) {
+        case ('+'):
+          commonScheme.variability = 'added';
+          break;
+        case ('-'):
+          commonScheme.variability = 'removed';
+          break;
+        case (' ') && (_.isObject(value)):
+          commonScheme.variability = 'changed';
+          break;
+        default:
+          commonScheme.variability = 'unchanged';
+          break;
+      }
+      if (_.isObject(value) && key.startsWith(' ')) {
+        commonScheme.children = iterFunction(value);
+      } else {
+        commonScheme.value = value;
+      }
+      return commonScheme;
+    });
+  return JSON.stringify(iterFunction(obj));
 };
 export default json;

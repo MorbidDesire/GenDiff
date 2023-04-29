@@ -34,7 +34,7 @@ Property 'key4' was added with value: 'hex'`);
   });
   test('json for json files', () => {
     // eslint-disable-next-line quotes
-    expect(genDiff(getFixturePath('testfile1.json'), getFixturePath('testfile2.json'), 'json')).toEqual(`[{"key1":{"typeOfValue":"string","value":"value1","variability":"unchanged"}},{"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},{"key3":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"lol":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},{"wow":{"typeOfValue":"object","value":"null","variability":"removed"}}"}},{"key4":{"typeOfValue":"string","value":"hex","variability":"added"}}]`);
+    expect(genDiff(getFixturePath('testfile1.json'), getFixturePath('testfile2.json'), 'json')).toEqual(`[{"name":"key1","typeOfValue":"string","variability":"unchanged","children":"none","value":"value1"},{"name":"key2","typeOfValue":"boolean","variability":"removed","children":"none","value":true},{"name":"key3","typeOfValue":"object","variability":"unchanged","children":[{"name":"lol","typeOfValue":"object","variability":"added","children":"none","value":{}},{"name":"wow","typeOfValue":"object","variability":"removed","children":"none","value":null}]},{"name":"key4","typeOfValue":"string","variability":"added","children":"none","value":"hex"}]`);
   });
 });
 
@@ -57,7 +57,7 @@ Property 'where.object' was added with value: 'test'`);
   });
   test('json for yaml files', () => {
     // eslint-disable-next-line quotes
-    expect(genDiff(getFixturePath('testfile1.yml'), getFixturePath('testfile2.yml'), 'json')).toEqual(`[{"fishnews":{"typeOfValue":"string","value":"mac","variability":"unchanged"}},{"key2":{"typeOfValue":"boolean","value":"true","variability":"removed"}},{"key2":{"typeOfValue":"object","value":"[object Object]","variability":"added","children":""}},{"where":{"typeOfValue":"object","value":"[object Object]","variability":"unchanged","children":"{"object":{"typeOfValue":"string","value":"test","variability":"added"}},{"pop":{"typeOfValue":"object","value":"null","variability":"unchanged"}}"}}]`);
+    expect(genDiff(getFixturePath('testfile1.yml'), getFixturePath('testfile2.yml'), 'json')).toEqual(`[{"name":"fishnews","typeOfValue":"string","variability":"unchanged","children":"none","value":"mac"},{"name":"key2","typeOfValue":"boolean","variability":"removed","children":"none","value":true},{"name":"key2","typeOfValue":"object","variability":"added","children":"none","value":{}},{"name":"where","typeOfValue":"object","variability":"unchanged","children":[{"name":"object","typeOfValue":"string","variability":"added","children":"none","value":"test"},{"name":"pop","typeOfValue":"object","variability":"unchanged","children":"none","value":null}]}]`);
   });
 });
 

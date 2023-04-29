@@ -7,14 +7,11 @@ const stylish = (value, replacer = ' ', spacesCount = 4) => {
     }
 
     const indentSize = depth * spacesCount;
-    let currentIndent = replacer.repeat(indentSize);
     const bracketIndent = replacer.repeat(indentSize - spacesCount);
     const lines = Object
       .entries(currentValue)
       .map(([key, val]) => {
-        if (key.startsWith('+') || key.startsWith('-') || key.startsWith(' ')) {
-          currentIndent = replacer.repeat(indentSize - 2);
-        }
+        const currentIndent = key.startsWith('+') || key.startsWith('-') || key.startsWith(' ') ? replacer.repeat(indentSize - 2) : replacer.repeat(indentSize);
         return `${currentIndent}${key}: ${iter(val, depth + 1)}`;
       });
 
