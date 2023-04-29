@@ -1,7 +1,8 @@
 import _ from 'lodash';
 
 const json = (obj) => {
-  const iterFunction = (data) => Object.entries(data)
+  const iterFunction = (data) => Object
+    .entries(data)
     .map(([key, value]) => {
       const typeOfValue = typeof value;
       const commonScheme = {
@@ -12,25 +13,23 @@ const json = (obj) => {
       };
       switch (key[0]) {
         case ('+'):
-          commonScheme.variability = 'added';
-          break;
+          return { ...commonScheme, variability: 'added' };
         case ('-'):
-          commonScheme.variability = 'removed';
-          break;
+          return { ...commonScheme, variability: 'removed' };
         case (' ') && (_.isObject(value)):
-          commonScheme.variability = 'changed';
-          break;
+          return { ...commonScheme, variability: 'changed' };
         default:
-          commonScheme.variability = 'unchanged';
           break;
       }
-      if (_.isObject(value) && key.startsWith(' ')) {
-        commonScheme.children = iterFunction(value);
-      } else {
-        commonScheme.value = value;
-      }
-      return commonScheme;
+      return (_.isObject(value) && key.startsWith(' ')) ? { ...commonScheme, children: iterFunction(value) } : { ...commonScheme, value };
     });
   return JSON.stringify(iterFunction(obj));
 };
 export default json;
+
+// if (_.isObject(value) && key.startsWith(' ')) {
+//   commonScheme.children = iterFunction(value);
+// } else {
+//   commonScheme.value = value;
+// }
+// return commonScheme;
