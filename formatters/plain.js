@@ -37,16 +37,3 @@ const plain = (obj) => {
   return iterFunction(obj, '');
 };
 export default plain;
-
-// let currentValue = _.get(data, key);
-// if (_.isObject(currentValue)) {
-//   currentValue = '[complex value]';
-// } else if (_.isString(currentValue)) {
-//   currentValue = `'${currentValue}'`;
-// }
-// let nextValue = _.get(data, `+ ${key.slice(2)}`);
-// if (_.isObject(nextValue)) {
-//   nextValue = '[complex value]';
-// } else if (_.isString(nextValue)) {
-//   nextValue = `'${nextValue}'`;
-// }

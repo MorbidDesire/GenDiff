@@ -33,4 +33,4 @@ gendiff <filepath> <filepath>
 
 ## gendiff json formatter
 
-[![gendiff -f json](https://asciinema.org/a/C6iPOWcXmDcvnAVJQIAfStnyJ.svg)](https://asciinema.org/a/C6iPOWcXmDcvnAVJQIAfStnyJ)
+[![gendiff -f json](https://asciinema.org/a/20hOuwNRBRUcVInBr6uJ9hKuT.svg)](https://asciinema.org/a/20hOuwNRBRUcVInBr6uJ9hKuT)
